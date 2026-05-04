@@ -1,0 +1,28 @@
+<button id="theme-toggle" class="theme-toggle btn btn-secondary" type="button" aria-label="Cambiar tema">
+  Tema
+</button>
+
+<script is:inline>
+  const button = document.getElementById("theme-toggle");
+  const root = document.documentElement;
+
+  const setLabel = () => {
+    const current = root.getAttribute("data-theme") || "light";
+    button.textContent = current === "dark" ? "Modo claro" : "Modo oscuro";
+  };
+
+  setLabel();
+  button?.addEventListener("click", () => {
+    const current = root.getAttribute("data-theme") || "light";
+    const next = current === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+    setLabel();
+  });
+</script>
+
+<style>
+  .theme-toggle {
+    min-width: 7.4rem;
+  }
+</style>

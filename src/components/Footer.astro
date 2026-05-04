@@ -1,0 +1,46 @@
+---
+import { siteData } from "@data/site";
+---
+
+<footer class="footer">
+  <div class="container footer-content">
+    <div class="footer-left">
+      <span class="text-mono text-accent">© 2026</span>
+      <span class="text-mono text-muted">{siteData.name} — Built with Astro & Zen</span>
+    </div>
+    
+    <div class="footer-right">
+      <a href="#inicio" class="nav-link text-mono">Back to top</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 4rem 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-left {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .footer-content {
+      flex-direction: column;
+      gap: 2rem;
+      text-align: center;
+    }
+    .footer-left {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+</style>

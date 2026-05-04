@@ -1,0 +1,222 @@
+---
+type Props = {
+  email: string;
+  githubUrl: string;
+  linkedinUrl: string;
+};
+
+const { email, githubUrl, linkedinUrl } = Astro.props;
+---
+
+<section class="section contact-section reveal" id="contacto">
+  <div class="container">
+    <div class="contact-card-main">
+      <div class="contact-content">
+        <header class="contact-header">
+          <span class="text-mono technical-tag">/ENGINEERING_AVAILABILITY</span>
+          <h2 class="title">Hablemos de ingeniería</h2>
+          <p class="description">
+            Especializado en arquitecturas escalables y automatización de procesos críticos. 
+            Si buscas una solución técnica robusta, hablemos.
+          </p>
+        </header>
+
+        <div class="contact-actions">
+          <a href={`mailto:${email}`} class="cta-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <span>{email}</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-nodes">
+        <div class="nodes-inner">
+          <span class="node-label text-mono">External Nodes</span>
+          
+          <div class="nodes-grid">
+            <a href={githubUrl} target="_blank" class="node-link group" aria-label="GitHub">
+              <div class="node-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              </div>
+              <div class="node-text">
+                <span class="text-mono name">GITHUB</span>
+                <span class="text-mono status">ONLINE</span>
+              </div>
+            </a>
+
+            <a href={linkedinUrl} target="_blank" class="node-link group" aria-label="LinkedIn">
+              <div class="node-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+              </div>
+              <div class="node-text">
+                <span class="text-mono name">LINKEDIN</span>
+                <span class="text-mono status">SYNCED</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="status-meta">
+            <div class="status-item">
+              <span class="text-mono key">API_STATE</span>
+              <span class="text-mono value text-accent">READY</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-section {
+    padding-bottom: 12rem;
+  }
+
+  .contact-card-main {
+    display: grid;
+    grid-template-columns: 1.4fr 0.6fr;
+    background: #0f172a; 
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .contact-content {
+    padding: 5rem;
+    color: #ffffff;
+  }
+
+  .technical-tag {
+    color: #60a5fa;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+  }
+
+  .contact-header .title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: #ffffff;
+    margin: 1.5rem 0;
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    font-weight: 800;
+  }
+
+  .description {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 500px;
+    margin-bottom: 4rem;
+    line-height: 1.6;
+  }
+
+  .cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.25rem;
+    background: #ffffff;
+    color: #0f172a;
+    padding: 1.25rem 2.5rem;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    width: fit-content;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .cta-primary:hover {
+    transform: translateY(-4px);
+    background: #60a5fa;
+    color: #ffffff;
+    box-shadow: 0 20px 40px -10px rgba(96, 165, 250, 0.4);
+  }
+
+  .contact-nodes {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 5rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .node-label {
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.3);
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+
+  .nodes-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .node-link {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    text-decoration: none;
+    color: #ffffff;
+    transition: all 0.3s ease;
+  }
+
+  .node-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .node-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .node-text .name { font-size: 0.8rem; font-weight: 800; }
+  .node-text .status { font-size: 0.55rem; color: #60a5fa; opacity: 0.8; }
+
+  .node-link:hover .node-icon {
+    transform: rotate(-5deg) scale(1.1);
+    background: #60a5fa;
+    color: #0f172a;
+    border-color: #60a5fa;
+  }
+
+  .node-link:hover .name { color: #60a5fa; }
+
+  .status-meta {
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .status-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .status-item .key { font-size: 0.55rem; opacity: 0.3; }
+  .status-item .value { font-size: 0.75rem; font-weight: 700; }
+
+  @media (max-width: 1024px) {
+    .contact-card-main { grid-template-columns: 1fr; }
+    .contact-content { padding: 4rem 2rem; }
+    .contact-nodes { 
+      padding: 3rem 2rem;
+      border-left: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  }
+</style>

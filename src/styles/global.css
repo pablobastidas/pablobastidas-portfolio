@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #0b0f14;
+  --text: #ffffff;
+  --text-smoke: rgba(255, 255, 255, 0.6);
+  
+  /* Palette Inspired by Joselu - Multi-accent system */
+  --accent-blue: #60a5fa;
+  --accent-emerald: #34d399;
+  --accent-amber: #fbbf24;
+  --accent-violet: #a78bfa;
+  --accent-rose: #fb7185;
+  
+  /* Off-White Palette */
+  --off-white: #f8fafc;
+  --silver: #f1f5f9;
+  --navy-deep: #0f172a;
+  
+  /* Active Accent (Default) */
+  --accent: var(--accent-blue);
+  --accent-muted: rgba(96, 165, 250, 0.1);
+  
+  --line: rgba(255, 255, 255, 0.06);
+  --surface: rgba(255, 255, 255, 0.02);
+  --font-mono: 'JetBrains Mono', monospace;
+  --max-width: 1100px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  width: min(100% - 3rem, var(--max-width));
+  margin-inline: auto;
+}
+
+.section {
+  padding: 8rem 0 4rem;
+}
+
+.section-title {
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Utils */
+.text-mono { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.text-accent { color: var(--accent); }
+.text-smoke { color: var(--text-smoke); }
+
+/* Multi-color utils */
+.color-emerald { --accent: var(--accent-emerald); --accent-muted: rgba(52, 211, 153, 0.1); }
+.color-amber { --accent: var(--accent-amber); --accent-muted: rgba(251, 191, 36, 0.1); }
+.color-violet { --accent: var(--accent-violet); --accent-muted: rgba(167, 139, 250, 0.1); }
+
+/* Glass Link (Joselu Style) */
+.nav-link {
+  color: rgba(255, 255, 255, 0.4);
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.4rem;
+  transition: all 0.2s ease;
+  font-size: 0.75rem;
+}
+
+.nav-link:hover {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Glass Card */
+.glass-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+  border-radius: 0.75rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Chips (Joselu Style) */
+.chip {
+  padding: 0.2rem 0.6rem;
+  background: var(--accent-muted);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--accent);
+  border-radius: 0.4rem;
+  font-size: 0.65rem;
+  font-weight: 500;
+}
+
+/* Animations */
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 0px 0px transparent; }
+  50% { box-shadow: 0 0 15px 2px var(--accent-muted); }
+  100% { box-shadow: 0 0 0px 0px transparent; }
+}
+
+/* Scroll Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }

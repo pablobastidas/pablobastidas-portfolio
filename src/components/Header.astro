@@ -1,0 +1,162 @@
+---
+---
+
+<header class="header" id="main-header">
+  <nav class="nav-dock">
+    <div class="nav-inner">
+      <a href="#inicio" class="nav-item home-icon" aria-label="Go to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      </a>
+      
+      <div class="separator"></div>
+
+      <div class="nav-links">
+        <a href="#proyectos" class="nav-item">
+          <span class="text-mono">Work</span>
+        </a>
+        <a href="#fortalezas" class="nav-item">
+          <span class="text-mono">Stack</span>
+        </a>
+        <a href="#trayectoria" class="nav-item">
+          <span class="text-mono">Journey</span>
+        </a>
+        <a href="#contacto" class="nav-item">
+          <span class="text-mono">Contact</span>
+        </a>
+      </div>
+
+      <div class="separator"></div>
+
+      <div class="nav-status">
+        <span class="status-dot"></span>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    bottom: 2rem; /* Move to bottom for a "Dock" feel, or keep at top if preferred */
+    top: auto;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  /* Optional: if you prefer it at the top, just swap top/bottom */
+  @media (min-width: 768px) {
+    .header {
+      top: 2rem;
+      bottom: auto;
+    }
+  }
+
+  .nav-dock {
+    pointer-events: auto;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    padding: 0.4rem;
+    box-shadow: 
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 20px 25px -5px rgba(0, 0, 0, 0.2),
+      0 0 0 1px rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .header.scrolled .nav-dock {
+    background: rgba(15, 23, 42, 0.9);
+    transform: scale(0.95);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0 0.5rem;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1.2rem;
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.7rem;
+    white-space: nowrap;
+  }
+
+  .nav-item:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-1px);
+  }
+
+  .home-icon {
+    padding: 0.6rem;
+    color: var(--accent);
+  }
+
+  .separator {
+    width: 1px;
+    height: 1.25rem;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0 0.25rem;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .nav-status {
+    padding: 0 0.8rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--accent);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  @media (max-width: 640px) {
+    .nav-item {
+      padding: 0.5rem 0.8rem;
+    }
+    .header {
+      bottom: 1.5rem;
+      top: auto;
+    }
+  }
+</style>
+
+<script>
+  const header = document.getElementById('main-header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header?.classList.add('scrolled');
+    } else {
+      header?.classList.remove('scrolled');
+    }
+  });
+</script>

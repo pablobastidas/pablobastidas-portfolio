@@ -1,0 +1,30 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/Header.astro";
+import Hero from "@components/Hero.astro";
+import ProjectsSection from "@components/ProjectsSection.astro";
+import Strengths from "@components/Strengths.astro";
+import Journey from "@components/Journey.astro";
+import Contact from "@components/Contact.astro";
+import Footer from "@components/Footer.astro";
+import { siteData } from "@data/site";
+---
+
+<BaseLayout title={siteData.seo.title} description={siteData.seo.description}>
+  <Header />
+  <main>
+    <Hero
+      name={siteData.name}
+      role={siteData.role}
+      heroTagline={siteData.heroTagline}
+      heroSummary={siteData.heroSummary}
+      githubUrl={siteData.githubUrl}
+      email={siteData.email}
+    />
+    <ProjectsSection />
+    <Strengths />
+    <Journey />
+    <Contact email={siteData.email} githubUrl={siteData.githubUrl} linkedinUrl={siteData.linkedinUrl} />
+  </main>
+  <Footer />
+</BaseLayout>

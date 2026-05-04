@@ -1,0 +1,134 @@
+---
+import { techIcons } from "@data/icons";
+
+const stack = [
+  {
+    category: "Modern Stack",
+    items: [
+      { name: "Angular 19", icon: "angular", color: "color-rose" },
+      { name: "FastAPI", icon: "fastapi", color: "color-emerald" },
+      { name: "Python", icon: "python", color: "color-blue" },
+      { name: "TypeScript", icon: "typescript", color: "color-blue" },
+      { name: "PostgreSQL", icon: "postgresql", color: "color-blue" }
+    ]
+  },
+  {
+    category: "Enterprise & ERP",
+    items: [
+      { name: "C# / .NET", icon: "csharp", color: "color-violet" },
+      { name: "VB.NET", icon: "dotnet", color: "color-violet" },
+      { name: "SQL Server", icon: "sqlserver", color: "color-rose" },
+      { name: "Oracle 11g", icon: "oracle", color: "color-rose" },
+      { name: "Softland ERP", icon: "dotnet", color: "color-amber" }
+    ]
+  },
+  {
+    category: "Data & Ops",
+    items: [
+      { name: "IoT / Modbus", icon: "scraping", color: "color-emerald" },
+      { name: "BI Automation", icon: "python", color: "color-amber" },
+      { name: "Scraping / ETL", icon: "scraping", color: "color-emerald" },
+      { name: "Docker", icon: "docker", color: "color-blue" },
+      { name: "GitLab CI/CD", icon: "astro", color: "color-rose" }
+    ]
+  }
+];
+---
+
+<section class="section reveal" id="fortalezas">
+  <div class="container">
+    <div class="header-area mb-4">
+      <span class="text-mono text-accent">/Stack</span>
+      <h2 class="section-title">Ecosistema Técnico</h2>
+    </div>
+
+    <div class="stack-container">
+      {stack.map((group) => (
+        <div class="stack-group">
+          <h3 class="stack-subtitle text-mono">{group.category}</h3>
+          <div class="stack-grid">
+            {group.items.map((item) => (
+              <div class={`stack-item glass-card ${item.color}`}>
+                <div class="icon-wrapper" set:html={techIcons[item.icon] || techIcons['scraping']} />
+                <span class="name">{item.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stack-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .stack-subtitle {
+    font-size: 0.8rem;
+    color: var(--text-smoke);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+
+  .stack-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 1.2rem;
+    border: 1px solid var(--line);
+    transition: all 0.3s ease;
+  }
+
+  .stack-item:hover {
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
+  }
+
+  .icon-wrapper {
+    width: 24px;
+    height: 24px;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .icon-wrapper :global(svg) {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 8px var(--accent-muted));
+  }
+
+  .stack-item .name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-smoke);
+    transition: color 0.2s;
+  }
+
+  .stack-item:hover .name {
+    color: var(--text);
+  }
+
+  @media (max-width: 640px) {
+    .stack-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .stack-item {
+      padding: 0.6rem 0.8rem;
+    }
+  }
+</style>

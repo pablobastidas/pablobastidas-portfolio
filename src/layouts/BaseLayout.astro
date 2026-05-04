@@ -1,0 +1,82 @@
+---
+import "@styles/global.css";
+
+import { siteData } from "@data/site";
+import { experiences } from "@data/experience";
+
+type Props = {
+  title: string;
+  description: string;
+};
+
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": siteData.name,
+  "jobTitle": siteData.role,
+  "url": Astro.site,
+  "sameAs": [
+    siteData.githubUrl,
+    siteData.linkedinUrl
+  ].filter(Boolean),
+  "hasOccupation": experiences.map(exp => ({
+    "@type": "Occupation",
+    "name": exp.title,
+    "description": exp.description
+  }))
+};
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0d111b" />
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="/og-image.svg" />
+
+    <title>{title}</title>
+
+    <script type="application/ld+json" is:html={JSON.stringify(jsonLd)} />
+
+    <script is:inline>
+      const stored = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const theme = stored || (prefersDark ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+
+      // Scroll Reveal Logic
+      document.addEventListener("DOMContentLoaded", () => {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+            }
+          });
+        }, observerOptions);
+
+        const revealElements = document.querySelectorAll(".reveal");
+        revealElements.forEach((el) => observer.observe(el));
+      });
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

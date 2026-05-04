@@ -26,7 +26,7 @@ Sitio de portafolio personal orientado a perfil de **Arquitecto de Software y De
 └─ tsconfig.json
 ```
 
-## 📝 Cómo Editar el Contenido (Enfoque Senior)
+## 📝 Cómo Editar el Contenido 
 
 El sitio utiliza una arquitectura basada en datos. Para actualizar la información, **no es necesario editar componentes HTML**, solo debes modificar los archivos en `src/data/`:
 

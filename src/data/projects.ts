@@ -1,4 +1,4 @@
-export type ProjectStatus = "Activo" | "En desarrollo" | "MVP" | "Experimental";
+export type ProjectStatus = "Activo" | "En desarrollo" | "MVP" | "Experimental" | "Beta";
 
 export type ProjectLink = {
   label: string;
@@ -21,6 +21,29 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "mundial-48",
+    name: "Predicción Mundial 2026",
+    summary:
+      "Plataforma web para gestionar pronósticos (pollas/quinielas) del Mundial de Fútbol 2026. Permite a los usuarios competir en ligas privadas prediciendo resultados.",
+    problem:
+      "Necesidad de una plataforma moderna y escalable para gestionar predicciones del nuevo formato FIFA de 48 selecciones y 104 partidos.",
+    solution:
+      "Desarrollo Full-Stack con motor de fixture dinámico, autenticación passwordless (Supabase), y provisionamiento Just-in-Time.",
+    tech: ["Next.js 15", "React 19", "FastAPI", "PostgreSQL", "Supabase", "Tailwind CSS"],
+    role:
+      "Desarrollador Full-Stack",
+    challenges: [
+      "Optimización de consultas N+1 en base de datos",
+      "Sincronización automática de JWT en backend",
+      "Migración a Next.js 15 con App Router"
+    ],
+    status: "Activo",
+    links: [
+      { label: "Ver proyecto", href: "https://prediccionmundial2026-frontend.vercel.app/" }
+    ],
+    featured: true
+  },
+  {
     slug: "kawin-event-platform",
     name: "Kawin Ecosystem",
     summary:
@@ -38,48 +61,8 @@ export const projects: Project[] = [
     ],
     status: "Activo",
     links: [
-      { label: "Internal Repo", href: "#" }
+      { label: "Ver proyecto", href: "https://kawin-frontend.vercel.app/" }
     ],
-    featured: true
-  },
-  {
-    slug: "motorsport-discovery",
-    name: "Motorsport Discovery",
-    summary:
-      "Plataforma de BI y recomendación para eventos de motor basada en algoritmos de distancia Euclidiana.",
-    problem:
-      "Dificultad de los usuarios para encontrar eventos afines a su perfil.",
-    solution:
-      "Sistema de recomendación dinámico con visualización de datos mediante Spider Charts y Chart.js.",
-    tech: ["Angular 19", "FastAPI", "Chart.js", "Analytics"],
-    role:
-      "Lead Developer",
-    challenges: [
-      "Optimización de algoritmos de recomendación",
-      "Visualización compleja de datos"
-    ],
-    status: "En desarrollo",
-    links: [{ label: "Demo", href: "#" }],
-    featured: true
-  },
-  {
-    slug: "suite-sistemas-empresariales",
-    name: "Logistics Enterprise Suite",
-    summary:
-      "Ecosistema de gestión de inventarios y logística para operaciones críticas de bodega y compras.",
-    problem:
-      "Procesos manuales con alta fricción y falta de trazabilidad.",
-    solution:
-      "Implementación de módulos integrados con lógica de negocio compleja y reportabilidad avanzada.",
-    tech: ["VB.NET", "SQL Server", "DevExpress", "Reporting"],
-    role:
-      "Senior Developer",
-    challenges: [
-      "Gestión de grandes volúmenes de datos",
-      "Consistencia transaccional"
-    ],
-    status: "Activo",
-    links: [{ label: "Technical Overview", href: "#" }],
     featured: true
   }
 ];

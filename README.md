@@ -49,10 +49,16 @@ Gestiona tus trabajos. Los proyectos marcados como `featured: true` aparecerán 
 
 ## 📦 Desarrollo y Despliegue
 
-1. **Instalación:** `npm install`
-2. **Desarrollo:** `npm run dev` (Disponible en `http://localhost:4321`)
-3. **Build:** `npm run build`
+### Entornos
+- **Desarrollo:** `npm run dev` (detección de cambios en tiempo real y validación de tipos).
+- **Producción:** `npm run build` (generación de sitio estático optimizado).
 
-## Notas de Despliegue
-- El sitio está optimizado para **Vercel** o **GitHub Pages**.
-- Asegúrate de actualizar el campo `site` en `astro.config.mjs` con tu dominio final para un SEO perfecto.
+### Despliegue en Vercel (CI/CD)
+El proyecto está pre-configurado para Vercel mediante `vercel.json`:
+1. Sube el código a **GitHub**.
+2. Importa el repositorio en **Vercel**.
+3. El despliegue será automático en cada `git push` a la rama principal.
+
+---
+*Este proyecto representa un estándar de ingeniería Senior: limpio, modular y orientado a resultados.*
+

@@ -59,6 +59,14 @@ El proyecto está pre-configurado para Vercel mediante `vercel.json`:
 2. Importa el repositorio en **Vercel**.
 3. El despliegue será automático en cada `git push` a la rama principal.
 
+## 📝 Historial de Actualizaciones (Changelog)
+
+- **Actualización Reciente (Junio 2026)**:
+  - Se definieron los proyectos destacados en `src/data/projects.ts`.
+  - Se incluyeron **Mundial 48 (Polla Mundial)** y **Kawin Ecosystem**.
+  - Se vincularon exitosamente las tarjetas del portafolio con sus respectivos despliegues en producción (Vercel).
+  - Se consolidó la información técnica de Mundial 48 extraída desde su propia documentación (`README_TECNICO.md`).
+
 ---
 *Este proyecto representa un estándar de ingeniería Senior: limpio, modular y orientado a resultados.*
 

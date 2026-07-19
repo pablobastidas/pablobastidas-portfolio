@@ -22,6 +22,29 @@ export type Project = {
 export const projects: Record<"es" | "en", Project[]> = {
   es: [
     {
+      slug: "patas-match",
+      name: "Patas Match",
+      summary:
+        "Plataforma web full-stack editorial premium orientada a la adopción responsable de mascotas con geolocalización y chat en tiempo real.",
+      problem:
+        "La fragmentación de portales de adopción y la falta de flujos de trabajo profesionales que garanticen la seguridad de la mascota y el cumplimiento legal de protección de datos.",
+      solution:
+        "Desarrollo de una arquitectura con Angular 18 (Signals), Django Rest Framework con PostGIS para búsquedas por proximidad, base de datos desnormalizada para chats O(1) e infraestructura Dockerizada.",
+      tech: ["Angular 18", "Django DRF", "PostgreSQL", "PostGIS", "Redis", "Docker", "Tailwind CSS"],
+      role:
+        "Desarrollador Full-Stack & DevOps",
+      challenges: [
+        "Optimización de chats en tiempo real con Redis y desnormalización de mensajes O(1)",
+        "Implementación de búsquedas geográficas por proximidad usando PostGIS en producción",
+        "Flujos de cumplimiento legal (Ley 19.628 de Chile) y borrado seguro de cuentas (Derecho ARCO)"
+      ],
+      status: "Activo",
+      links: [
+        { label: "Ver proyecto", href: "https://patasmatch.vercel.app/" }
+      ],
+      featured: true
+    },
+    {
       slug: "mundial-48",
       name: "Predicción Mundial 2026",
       summary:
@@ -68,6 +91,29 @@ export const projects: Record<"es" | "en", Project[]> = {
     }
   ],
   en: [
+    {
+      slug: "patas-match",
+      name: "Patas Match",
+      summary:
+        "Premium editorial full-stack web platform oriented towards responsible pet adoption, featuring geolocation and real-time chat.",
+      problem:
+        "The fragmentation of adoption portals and the lack of professional workflows that guarantee pet safety and legal data protection compliance.",
+      solution:
+        "Development of an architecture using Angular 18 (Signals), Django Rest Framework with PostGIS for proximity searches, a denormalized database for O(1) chats, and a Dockerized infrastructure.",
+      tech: ["Angular 18", "Django DRF", "PostgreSQL", "PostGIS", "Redis", "Docker", "Tailwind CSS"],
+      role:
+        "Full-Stack & DevOps Developer",
+      challenges: [
+        "Real-time chat optimization using Redis and O(1) message denormalization",
+        "Implementation of geographic proximity searches using PostGIS in production",
+        "Legal compliance workflows (Chilean Law 19,628) and secure account deletion (ARCO Rights)"
+      ],
+      status: "Active",
+      links: [
+        { label: "View project", href: "https://patasmatch.vercel.app/" }
+      ],
+      featured: true
+    },
     {
       slug: "mundial-48",
       name: "2026 World Cup Prediction",

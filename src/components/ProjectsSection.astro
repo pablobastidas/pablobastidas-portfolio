@@ -2,7 +2,13 @@
 import ProjectCard from "./ProjectCard.astro";
 import { projects } from "@data/projects";
 
+type Props = {
+  lang?: "es" | "en";
+};
+
+const { lang = "es" } = Astro.props;
 const colors = ["", "color-emerald", "color-amber", "color-violet"];
+const localizedProjects = projects[lang] || [];
 ---
 
 <section class="section proyects-wrapper reveal" id="proyectos">
@@ -10,14 +16,14 @@ const colors = ["", "color-emerald", "color-amber", "color-violet"];
     <div class="header-area mb-4">
       <div class="header-content">
         <div>
-          <span class="text-mono text-accent">/Work</span>
-          <h2 class="section-title">Proyectos Destacados</h2>
+          <span class="text-mono text-accent">/{lang === "es" ? "Proyectos" : "Work"}</span>
+          <h2 class="section-title">{lang === "es" ? "Proyectos Destacados" : "Featured Projects"}</h2>
         </div>
         <div class="carousel-nav">
-          <button id="prev-btn" class="nav-btn glass-card" aria-label="Anterior">
+          <button id="prev-btn" class="nav-btn glass-card" aria-label={lang === "es" ? "Anterior" : "Previous"}>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
           </button>
-          <button id="next-btn" class="nav-btn glass-card" aria-label="Siguiente">
+          <button id="next-btn" class="nav-btn glass-card" aria-label={lang === "es" ? "Siguiente" : "Next"}>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
           </button>
         </div>
@@ -26,23 +32,23 @@ const colors = ["", "color-emerald", "color-amber", "color-violet"];
 
     <div class="proyects__list-container">
       <div class="proyects__list">
-        {projects.filter(p => p.featured).map((pro, index) => (
+        {localizedProjects.filter(p => p.featured).map((pro, index) => (
           <ProjectCard project={pro} colorClass={colors[index % colors.length]} />
         ))}
       </div>
     </div>
 
-    <a href="#contacto" class="proyects__more text-mono">¿Tienes un reto para mí? Hablemos . . .</a>
+    <a href="#contacto" class="proyects__more text-mono">
+      {lang === "es" ? "¿Tienes un reto para mí? Hablemos . . ." : "Have a challenge for me? Let's talk . . ."}
+    </a>
   </div>
 </section>
 
 <script>
-  // Spotlight logic
-  const wrapper = document.querySelector('.proyects__list');
+  // Spotlight logic (optimized)
   const cards = document.querySelectorAll('.proyect');
-
-  wrapper?.addEventListener('mousemove', (e) => {
-    cards.forEach((card) => {
+  cards.forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x = (e as MouseEvent).clientX - rect.left;
       const y = (e as MouseEvent).clientY - rect.top;
@@ -178,3 +184,4 @@ const colors = ["", "color-emerald", "color-amber", "color-violet"];
     }
   }
 </style>
+

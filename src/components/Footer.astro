@@ -1,5 +1,11 @@
 ---
 import { siteData } from "@data/site";
+
+type Props = {
+  lang?: "es" | "en";
+};
+
+const { lang = "es" } = Astro.props;
 ---
 
 <footer class="footer">
@@ -10,7 +16,7 @@ import { siteData } from "@data/site";
     </div>
     
     <div class="footer-right">
-      <a href="#inicio" class="nav-link text-mono">Back to top</a>
+      <a href="#inicio" class="nav-link text-mono">{lang === "es" ? "Volver arriba" : "Back to top"}</a>
     </div>
   </div>
 </footer>
@@ -44,3 +50,4 @@ import { siteData } from "@data/site";
     }
   }
 </style>
+

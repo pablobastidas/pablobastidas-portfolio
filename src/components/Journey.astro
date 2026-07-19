@@ -1,17 +1,24 @@
 ---
 import { experiences } from "@data/experience";
+
+type Props = {
+  lang?: "es" | "en";
+};
+
+const { lang = "es" } = Astro.props;
+const localizedExperiences = experiences[lang] || [];
 ---
 
 <section class="section" id="trayectoria">
   <div class="container">
     <div class="header-area mb-4">
       <span class="text-mono text-accent">/Experience</span>
-      <h2 class="section-title">Trayectoria Profesional</h2>
+      <h2 class="section-title">{lang === "es" ? "Trayectoria Profesional" : "Professional Journey"}</h2>
     </div>
 
     <div class="timeline-container">
       {
-        experiences.map((block, index) => (
+        localizedExperiences.map((block, index) => (
           <div class={`timeline-item reveal reveal-delay-${(index % 3) + 1}`}>
             <div class="timeline-marker">
               <div class="marker-dot"></div>
@@ -179,3 +186,4 @@ import { experiences } from "@data/experience";
     }
   }
 </style>
+

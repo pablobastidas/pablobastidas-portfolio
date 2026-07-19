@@ -1,6 +1,12 @@
 ---
 import { techIcons } from "@data/icons";
 
+type Props = {
+  lang?: "es" | "en";
+};
+
+const { lang = "es" } = Astro.props;
+
 const stack = [
   {
     category: "Modern Stack",
@@ -39,7 +45,7 @@ const stack = [
   <div class="container">
     <div class="header-area mb-4">
       <span class="text-mono text-accent">/Stack</span>
-      <h2 class="section-title">Ecosistema Técnico</h2>
+      <h2 class="section-title">{lang === "es" ? "Ecosistema Técnico" : "Technical Ecosystem"}</h2>
     </div>
 
     <div class="stack-container">
@@ -132,3 +138,4 @@ const stack = [
     }
   }
 </style>
+

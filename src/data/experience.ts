@@ -7,69 +7,137 @@ export interface Experience {
   tags: string[];
 }
 
-export const experiences: Experience[] = [
-  {
-    id: "personal-projects",
-    year: "Actualidad",
-    title: "Desarrollador de Arquitecturas Web & Proyectos Personales",
-    company: "Desarrollo Independiente",
-    description: "Liderando la construcción del Kawin Ecosystem (Arquitectura de 3 capas para eventos mediante scraping masivo) y Motorsport Discovery (Plataforma BI con algoritmos de recomendación Euclidiana), utilizando stacks modernos como Angular 19 y FastAPI.",
-    tags: ["Angular 19", "FastAPI", "Python", "Scraping", "BI"]
-  },
-  {
-    id: "abenis-consultores",
-    year: "2024 - 2025",
-    title: "Desarrollador de Software Full-Stack",
-    company: "Abenis Consultores",
-    description: "Desarrollo de módulos críticos para el gestor documental SIGA del Hospital Dr. Sótero del Río. Optimización de consultas SQL complejas en Oracle 11g y automatización de flujos administrativos hospitalarios.",
-    tags: ["VB.NET", "Oracle 11g", "GitLab CI/CD", "jQuery", "Bootstrap"]
-  },
-  {
-    id: "infratec-spa",
-    year: "2023 - 2024",
-    title: "Desarrollador de Software IoT",
-    company: "Infratec Spa",
-    description: "Integración de sistemas IoT industriales en C#, conectando estaciones meteorológicas y equipos de adquisición de datos vía protocolo Modbus. Mantenimiento del sistema crítico ITS SICAS.",
-    tags: ["C#", "IoT", "Modbus", "SQL Server", "Architecture"]
-  },
-  {
-    id: "tu-complemento",
-    year: "2021 - 2023",
-    title: "Analista Programador ERP & Automatización",
-    company: "Tu Complemento EIRL",
-    description: "Automatización tributaria y financiera en Softland ERP. Diseño de workflows de pagos automatizados en Duemint con sincronización bidireccional y migración de ecosistemas empresariales.",
-    tags: ["ERP Softland", "T-SQL", "API Integration", "Duemint"]
-  },
-  {
-    id: "disecom-chile",
-    year: "2021",
-    title: "Analista Programador (Ingeniería Inversa)",
-    company: "DISECOM CHILE",
-    description: "Ingeniería inversa completa de un sistema WMS sin código fuente. Recuperación, estabilización y creación de documentación técnica desde cero mediante decompilación y debugging avanzado.",
-    tags: ["Reverse Engineering", "WMS", "Decompilation", "Legacy"]
-  },
-  {
-    id: "puc-chile",
-    year: "2020",
-    title: "Analista Programador ERP Institucional",
-    company: "Pontificia Universidad Católica de Chile",
-    description: "Desarrollo de módulos ERP para Facultades de Medicina y Ciencias Biológicas. Implementación de fichas de inventario responsivas y ejecución de pruebas QA críticas.",
-    tags: ["ASP.NET", "ERP", "Responsive Design", "QA"]
-  },
-  {
-    id: "fahneu",
-    year: "2019 - 2020",
-    title: "Analista Programador BI & Automatización",
-    company: "Fahneu",
-    description: "Automatización de reportes KPI gerenciales integrando Softland ERP, Exchange y SQL Server. Implementación de mantenedores Web API y metodología Kanban en el área TI.",
-    tags: ["BI", "Web API", "Kanban", "Automation"]
-  },
-  {
-    id: "early-career",
-    year: "2018",
-    title: "Desarrollador Web & SQL",
-    company: "BoxTI / VMICA",
-    description: "Soporte y mantención de aplicaciones C# MVC 5. Gestión de información en SQL Server 2014 y creación de APIs REST para plataformas académicas.",
-    tags: ["C# MVC", "SQL Server", "API REST"]
-  }
-];
+export const experiences: Record<"es" | "en", Experience[]> = {
+  es: [
+    {
+      id: "personal-projects",
+      year: "Actualidad",
+      title: "Desarrollador de Arquitecturas Web & Proyectos Personales",
+      company: "Desarrollo Independiente",
+      description: "Liderando la construcción del Kawin Ecosystem (Arquitectura de 3 capas para eventos mediante scraping masivo) y Motorsport Discovery (Plataforma BI con algoritmos de recomendación Euclidiana), utilizando stacks modernos como Angular 19 y FastAPI.",
+      tags: ["Angular 19", "FastAPI", "Python", "Scraping", "BI"]
+    },
+    {
+      id: "abenis-consultores",
+      year: "2024 - 2025",
+      title: "Desarrollador de Software Full-Stack",
+      company: "Abenis Consultores",
+      description: "Desarrollo de módulos críticos para el gestor documental SIGA del Hospital Dr. Sótero del Río. Optimización de consultas SQL complejas en Oracle 11g y automatización de flujos administrativos hospitalarios.",
+      tags: ["VB.NET", "Oracle 11g", "GitLab CI/CD", "jQuery", "Bootstrap"]
+    },
+    {
+      id: "infratec-spa",
+      year: "2023 - 2024",
+      title: "Desarrollador de Software IoT",
+      company: "Infratec Spa",
+      description: "Integración de sistemas IoT industriales en C#, conectando estaciones meteorológicas y equipos de adquisición de datos vía protocolo Modbus. Mantenimiento del sistema crítico ITS SICAS.",
+      tags: ["C#", "IoT", "Modbus", "SQL Server", "Architecture"]
+    },
+    {
+      id: "tu-complemento",
+      year: "2021 - 2023",
+      title: "Analista Programador ERP & Automatización",
+      company: "Tu Complemento EIRL",
+      description: "Automatización tributaria y financiera en Softland ERP. Diseño de workflows de pagos automatizados en Duemint con sincronización bidireccional y migración de ecosistemas empresariales.",
+      tags: ["ERP Softland", "T-SQL", "API Integration", "Duemint"]
+    },
+    {
+      id: "disecom-chile",
+      year: "2021",
+      title: "Analista Programador (Ingeniería Inversa)",
+      company: "DISECOM CHILE",
+      description: "Ingeniería inversa completa de un sistema WMS sin código fuente. Recuperación, estabilización y creación de documentación técnica desde cero mediante decompilación y debugging avanzado.",
+      tags: ["Reverse Engineering", "WMS", "Decompilation", "Legacy"]
+    },
+    {
+      id: "puc-chile",
+      year: "2020",
+      title: "Analista Programador ERP Institucional",
+      company: "Pontificia Universidad Católica de Chile",
+      description: "Desarrollo de módulos ERP para Facultades de Medicina y Ciencias Biológicas. Implementación de fichas de inventario responsivas y ejecución de pruebas QA críticas.",
+      tags: ["ASP.NET", "ERP", "Responsive Design", "QA"]
+    },
+    {
+      id: "fahneu",
+      year: "2019 - 2020",
+      title: "Analista Programador BI & Automatización",
+      company: "Fahneu",
+      description: "Automatización de reportes KPI gerenciales integrando Softland ERP, Exchange y SQL Server. Implementación de mantenedores Web API y metodología Kanban en el área TI.",
+      tags: ["BI", "Web API", "Kanban", "Automation"]
+    },
+    {
+      id: "early-career",
+      year: "2018",
+      title: "Desarrollador Web & SQL",
+      company: "BoxTI / VMICA",
+      description: "Soporte y mantención de aplicaciones C# MVC 5. Gestión de información en SQL Server 2014 y creación de APIs REST para plataformas académicas.",
+      tags: ["C# MVC", "SQL Server", "API REST"]
+    }
+  ],
+  en: [
+    {
+      id: "personal-projects",
+      year: "Present",
+      title: "Web Architectures & Personal Projects Developer",
+      company: "Independent Development",
+      description: "Leading the development of the Kawin Ecosystem (3-tier architecture for events through massive scraping) and Motorsport Discovery (BI platform with Euclidean recommendation algorithms), using modern stacks like Angular 19 and FastAPI.",
+      tags: ["Angular 19", "FastAPI", "Python", "Scraping", "BI"]
+    },
+    {
+      id: "abenis-consultores",
+      year: "2024 - 2025",
+      title: "Full-Stack Software Developer",
+      company: "Abenis Consultores",
+      description: "Development of critical modules for the SIGA document manager at Hospital Dr. Sótero del Río. Optimization of complex SQL queries in Oracle 11g and automation of administrative hospital workflows.",
+      tags: ["VB.NET", "Oracle 11g", "GitLab CI/CD", "jQuery", "Bootstrap"]
+    },
+    {
+      id: "infratec-spa",
+      year: "2023 - 2024",
+      title: "IoT Software Developer",
+      company: "Infratec Spa",
+      description: "Integration of industrial IoT systems in C#, connecting weather stations and data acquisition equipment via Modbus protocol. Maintenance of the critical ITS SICAS system.",
+      tags: ["C#", "IoT", "Modbus", "SQL Server", "Architecture"]
+    },
+    {
+      id: "tu-complemento",
+      year: "2021 - 2023",
+      title: "ERP & Automation Analyst Programmer",
+      company: "Tu Complemento EIRL",
+      description: "Tax and financial automation in Softland ERP. Design of automated payment workflows in Duemint with bidirectional synchronization and enterprise ecosystem migrations.",
+      tags: ["ERP Softland", "T-SQL", "API Integration", "Duemint"]
+    },
+    {
+      id: "disecom-chile",
+      year: "2021",
+      title: "Analyst Programmer (Reverse Engineering)",
+      company: "DISECOM CHILE",
+      description: "Complete reverse engineering of a WMS system without source code. Recovery, stabilization, and creation of technical documentation from scratch through decompilation and advanced debugging.",
+      tags: ["Reverse Engineering", "WMS", "Decompilation", "Legacy"]
+    },
+    {
+      id: "puc-chile",
+      year: "2020",
+      title: "Institutional ERP Analyst Programmer",
+      company: "Pontificia Universidad Católica de Chile",
+      description: "Development of ERP modules for the Faculties of Medicine and Biological Sciences. Implementation of responsive inventory files and execution of critical QA tests.",
+      tags: ["ASP.NET", "ERP", "Responsive Design", "QA"]
+    },
+    {
+      id: "fahneu",
+      year: "2019 - 2020",
+      title: "BI & Automation Analyst Programmer",
+      company: "Fahneu",
+      description: "Automation of management KPI reports integrating Softland ERP, Exchange, and SQL Server. Implementation of Web API maintainers and Kanban methodology in the IT area.",
+      tags: ["BI", "Web API", "Kanban", "Automation"]
+    },
+    {
+      id: "early-career",
+      year: "2018",
+      title: "Web & SQL Developer",
+      company: "BoxTI / VMICA",
+      description: "Support and maintenance of C# MVC 5 applications. Information management in SQL Server 2014 and creation of REST APIs for academic platforms.",
+      tags: ["C# MVC", "SQL Server", "API REST"]
+    }
+  ]
+};

@@ -56,6 +56,29 @@ const jsonLd = {
 
     <script is:inline>
       document.documentElement.classList.add("js-enabled");
+
+      // i18n Auto-Detection & Redirection
+      const storedLang = localStorage.getItem("preferred-lang");
+      const browserLang = (navigator.language || "").toLowerCase();
+      const currentPath = window.location.pathname;
+
+      if (!storedLang) {
+        if (browserLang.startsWith("en") && !currentPath.includes("/en")) {
+          localStorage.setItem("preferred-lang", "en");
+          window.location.href = "/en";
+        } else if (!browserLang.startsWith("en") && currentPath.includes("/en")) {
+          localStorage.setItem("preferred-lang", "es");
+          window.location.href = "/";
+        } else {
+          localStorage.setItem("preferred-lang", currentPath.includes("/en") ? "en" : "es");
+        }
+      } else {
+        if (storedLang === "en" && !currentPath.includes("/en")) {
+          window.location.href = "/en";
+        } else if (storedLang === "es" && currentPath.includes("/en")) {
+          window.location.href = "/";
+        }
+      }
       
       const stored = localStorage.getItem("theme");
       const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;

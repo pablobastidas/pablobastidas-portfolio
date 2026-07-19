@@ -281,4 +281,12 @@ const languageLabel = lang === "es" ? "EN" : "ES";
     root.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
   });
+
+  // Language Override logic
+  const langBtn = document.querySelector('.lang-btn');
+  langBtn?.addEventListener('click', () => {
+    const currentLang = root.lang || 'es';
+    const nextLang = currentLang === 'es' ? 'en' : 'es';
+    localStorage.setItem('preferred-lang', nextLang);
+  });
 </script>

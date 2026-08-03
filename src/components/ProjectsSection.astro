@@ -92,7 +92,7 @@ const localizedProjects = projects[lang] || [];
 
 <style>
   .proyects-wrapper {
-    margin-bottom: 8rem;
+    margin-bottom: 4rem;
   }
 
   .header-content {
@@ -140,7 +140,7 @@ const localizedProjects = projects[lang] || [];
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    padding: 2rem 1rem 4rem 1rem; /* Padding extra para luces y sombras */
+    padding: 1.5rem 1rem 3rem 1rem;
     margin: 0;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -157,6 +157,21 @@ const localizedProjects = projects[lang] || [];
     min-width: 320px;
     scroll-snap-align: center; /* Alineación al centro para mejor visibilidad */
     display: flex;
+  }
+
+  @media (min-width: 901px) {
+    .carousel-nav { display: none; }
+
+    .proyects__list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      overflow: visible;
+    }
+
+    .proyects__list > :global(*) {
+      min-width: 0;
+      flex: none;
+    }
   }
 
   .proyects__more {
@@ -182,6 +197,12 @@ const localizedProjects = projects[lang] || [];
       align-items: flex-start;
       gap: 1.5rem;
     }
+  }
+
+  @media (max-width: 640px) {
+    .proyects__list-container { margin: 0 -0.5rem; padding: 0 0.5rem; }
+    .proyects__list { gap: 1rem; padding-inline: 0.5rem; }
+    .proyects__list > :global(*) { min-width: min(86vw, 22rem); }
   }
 </style>
 

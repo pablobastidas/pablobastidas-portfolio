@@ -51,7 +51,7 @@ const stack = [
     <div class="stack-container">
       {stack.map((group) => (
         <div class="stack-group">
-          <h3 class="stack-subtitle text-mono">{group.category}</h3>
+          <h3 class="stack-subtitle text-mono">{lang === "es" && group.category === "Modern Stack" ? "Stack moderno" : lang === "es" && group.category === "Enterprise & ERP" ? "Empresa y ERP" : lang === "es" && group.category === "Data & Ops" ? "Datos y operaciones" : group.category}</h3>
           <div class="stack-grid">
             {group.items.map((item) => (
               <div class={`stack-item glass-card ${item.color}`}>

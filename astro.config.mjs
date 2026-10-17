@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://pablo-bastidas.vercel.app",
+  site: "https://pablobastidas-portfolio.vercel.app",
   output: "static",
   devToolbar: {
     enabled: false

@@ -27,3 +27,5 @@ npm run build
 ```
 
 El repositorio está conectado a Vercel. Los cambios que se suben a `main` activan el despliegue automático.
+
+Sitio publicado: [pablobastidas-portfolio.vercel.app](https://pablobastidas-portfolio.vercel.app/).

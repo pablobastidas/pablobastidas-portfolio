@@ -1,297 +1,85 @@
 ---
-type Props = {
-  lang?: "es" | "en";
-};
-
-const { lang = "es" } = Astro.props;
-
-const languageLink = lang === "es" ? "/en" : "/";
-const languageLabel = lang === "es" ? "EN" : "ES";
+import type { SiteContent } from "@data/content";
+type Props = { content: SiteContent };
+const { content } = Astro.props;
+const { nav } = content.ui;
 ---
-
-<header class="header" id="main-header">
-  <nav class="nav-dock">
-    <div class="nav-inner">
-      <a href="#inicio" class="nav-item home-icon" aria-label="Go to top">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-      </a>
-      
-      <div class="separator"></div>
-
-      <div class="nav-links">
-        <a href="#proyectos" class="nav-item">
-          <span class="text-mono">{lang === "es" ? "Proyectos" : "Work"}</span>
-        </a>
-        <a href="#fortalezas" class="nav-item">
-          <span class="text-mono">{lang === "es" ? "Tecnologías" : "Stack"}</span>
-        </a>
-        <a href="#trayectoria" class="nav-item">
-          <span class="text-mono">{lang === "es" ? "Trayectoria" : "Journey"}</span>
-        </a>
-        <a href="#contacto" class="nav-item">
-          <span class="text-mono">{lang === "es" ? "Contacto" : "Contact"}</span>
-        </a>
-      </div>
-
-      <div class="separator"></div>
-
-      <!-- Theme Switcher & Language Switcher -->
-      <div class="nav-actions">
-        <button id="dock-theme-toggle" class="nav-action-btn" aria-label="Toggle Theme" type="button">
-          <!-- Sun Icon -->
-          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-          <!-- Moon Icon -->
-          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-        </button>
-        <a href={languageLink} class="nav-action-btn lang-btn text-mono" aria-label="Change Language">
-          {languageLabel}
-        </a>
-      </div>
-
-      <div class="separator"></div>
-
-      <div class="nav-status">
-        <span class="status-dot"></span>
-      </div>
+<header class="site-header">
+  <nav class="container navigation" aria-label={nav.label}>
+    <a class="wordmark" href="#inicio">{content.identity.name}<span>.</span></a>
+    <div class="navigation-links">
+      <a href="#proyectos">{nav.projects}</a>
+      <a href="#trayectoria">{nav.about}</a>
+      <a class="linkedin" href={content.identity.linkedinUrl} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a class="language-link" href={content.lang === "es" ? "/en" : "/"} aria-label={nav.languageAria}>{nav.languageLabel}</a>
+      <a class="header-contact" href="#contacto">{nav.contact} <span aria-hidden="true">↗</span></a>
     </div>
   </nav>
 </header>
-
 <style>
-  .header {
-    position: fixed;
-    bottom: 2rem;
-    top: auto;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    pointer-events: none;
+  .site-header {
+    position:sticky;
+    top:0;
+    z-index:50;
+    padding:1rem 0;
+    background:color-mix(in srgb,var(--bg) 94%,transparent);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid transparent;
+    transition:border-color .2s ease,box-shadow .2s ease;
   }
-
-  @media (min-width: 768px) {
-    .header {
-      top: 2rem;
-      bottom: auto;
-    }
-  }
-
-  .nav-dock {
-    pointer-events: auto;
-    background: rgba(15, 23, 42, 0.7);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 0.75rem;
-    padding: 0.4rem;
-    box-shadow: 
-      0 4px 6px -1px rgba(0, 0, 0, 0.1),
-      0 20px 25px -5px rgba(0, 0, 0, 0.2),
-      0 0 0 1px rgba(255, 255, 255, 0.05);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* Light theme header style adjustment */
-  :global(html[data-theme="light"]) .nav-dock {
-    background: rgba(248, 250, 252, 0.8);
-    border-color: rgba(15, 23, 42, 0.08);
-    box-shadow: 
-      0 4px 6px -1px rgba(15, 23, 42, 0.05),
-      0 20px 25px -5px rgba(15, 23, 42, 0.1),
-      0 0 0 1px rgba(15, 23, 42, 0.02);
-  }
-
-  .header.scrolled .nav-dock {
-    background: rgba(15, 23, 42, 0.9);
-    transform: scale(0.95);
-    border-color: rgba(255, 255, 255, 0.15);
-  }
-
-  :global(html[data-theme="light"]) .header.scrolled .nav-dock {
-    background: rgba(248, 250, 252, 0.95);
-    border-color: rgba(15, 23, 42, 0.15);
-  }
-
-  .nav-inner {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    padding: 0 0.35rem;
-  }
-
-  .nav-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.6rem 1.2rem;
-    border-radius: 0.45rem;
-    color: rgba(255, 255, 255, 0.5);
-    text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    font-size: 0.7rem;
-    white-space: nowrap;
-  }
-
-  :global(html[data-theme="light"]) .nav-item {
-    color: rgba(15, 23, 42, 0.6);
-  }
-
-  .nav-item:hover {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.08);
-    transform: translateY(-1px);
-  }
-
-  :global(html[data-theme="light"]) .nav-item:hover {
-    color: #0f172a;
-    background: rgba(15, 23, 42, 0.05);
-  }
-
-  .home-icon {
-    padding: 0.6rem;
-    color: var(--accent);
-  }
-
-  .separator {
-    width: 1px;
-    height: 1.25rem;
-    background: rgba(255, 255, 255, 0.1);
-    margin: 0 0.25rem;
-  }
-
-  :global(html[data-theme="light"]) .separator {
-    background: rgba(15, 23, 42, 0.1);
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 0.25rem;
-  }
-
-  .nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-  }
-
-  .nav-action-btn {
-    background: none;
-    border: none;
-    color: rgba(255, 255, 255, 0.5);
-    padding: 0.6rem;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-decoration: none;
-    min-width: 28px;
-    min-height: 28px;
-  }
-
-  :global(html[data-theme="light"]) .nav-action-btn {
-    color: rgba(15, 23, 42, 0.6);
-  }
-
-  .nav-action-btn:hover {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.08);
-    transform: scale(1.1);
-  }
-
-  :global(html[data-theme="light"]) .nav-action-btn:hover {
-    color: #0f172a;
-    background: rgba(15, 23, 42, 0.05);
-  }
-
-  .sun-icon {
-    display: none;
-  }
-
-  .moon-icon {
-    display: block;
-  }
-
-  /* Show/hide sun and moon icons based on data-theme */
-  :global(html[data-theme="light"]) .sun-icon {
-    display: block;
-  }
-
-  :global(html[data-theme="light"]) .moon-icon {
-    display: none;
-  }
-
-  .nav-status {
-    padding: 0 0.8rem;
-    display: flex;
-    align-items: center;
-  }
-
-  .status-dot {
-    width: 6px;
-    height: 6px;
-    background: var(--accent);
-    border-radius: 50%;
-    box-shadow: 0 0 12px var(--accent);
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.8); }
-  }
-
-  @media (max-width: 640px) {
-    .nav-dock { max-width: calc(100vw - 1rem); }
-    .nav-item {
-      padding: 0.5rem 0.45rem;
-      font-size: 0.65rem;
-    }
-    .header {
-      bottom: 1.5rem;
-      top: auto;
-    }
-    .nav-inner {
-      gap: 0.1rem;
-    }
-
-    .nav-actions { gap: 0; }
-    .nav-action-btn { padding: 0.5rem; }
-    .nav-status { display: none; }
-  }
+  .site-header.is-scrolled { border-bottom-color:var(--line); box-shadow:0 5px 18px rgb(23 35 59 / 5%); }
+  .navigation { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; }
+  .wordmark { color:var(--text); font-family:var(--font-display); font-size:1rem; font-weight:600; letter-spacing:-.055em; text-decoration:none; white-space:nowrap; }
+  .wordmark span { color:var(--accent); }
+  .navigation-links { display:flex; align-items:center; gap:1.8rem; }
+  .navigation-links a { color:var(--text-smoke); font-size:.95rem; text-decoration:none; min-height:44px; display:inline-flex; align-items:center; }
+  .navigation-links a:hover { color:var(--text); }
+  .navigation-links .language-link { font-size:.8rem; }
+  .navigation-links .header-contact { min-height:44px; color:var(--accent); border:1px solid var(--line); border-radius:.35rem; padding:.45rem 1rem; gap:.8rem; font-weight:600; }
+  .navigation-links a[aria-current="location"] { color:var(--accent); }
+  .navigation-links a[aria-current="location"]::after { content:""; position:absolute; height:2px; background:var(--accent); inset:auto 0 .2rem; }
+  .navigation-links a[href^="#"] { position:relative; }
+  @media(max-width:600px) { .site-header { padding:.75rem 0; } .navigation { flex-wrap:wrap; gap:.35rem; } .navigation-links { width:100%; justify-content:space-between; gap:.6rem; } .navigation-links a { font-size:.75rem; } .navigation-links .linkedin { display:none; } .navigation-links .header-contact { padding:.35rem .75rem; } }
 </style>
-
 <script>
-  // Scrolled effect
-  const header = document.getElementById('main-header');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      header?.classList.add('scrolled');
-    } else {
-      header?.classList.remove('scrolled');
-    }
+  const header = document.querySelector('.site-header');
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('.navigation-links a[href^="#"]'));
+
+  const updateHeader = () => {
+    header?.classList.toggle('is-scrolled', window.scrollY > 8);
+  };
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  window.addEventListener('resize', updateCurrentSection, { passive: true });
+
+  document.querySelector('.language-link')?.addEventListener('click', () => {
+    localStorage.setItem('preferred-lang', document.documentElement.lang === 'es' ? 'en' : 'es');
   });
 
-  // Theme Toggle logic
-  const themeBtn = document.getElementById('dock-theme-toggle');
-  const root = document.documentElement;
+  const sections = links
+    .map((link) => document.querySelector<HTMLElement>(link.getAttribute('href')!))
+    .filter((section): section is HTMLElement => section !== null);
 
-  themeBtn?.addEventListener('click', () => {
-    const current = root.getAttribute('data-theme') || 'dark';
-    const next = current === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
+  const setCurrentLink = (id: string) => links.forEach((link) => {
+    if (link.getAttribute('href') === `#${id}`) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
   });
 
-  // Language Override logic
-  const langBtn = document.querySelector('.lang-btn');
-  langBtn?.addEventListener('click', () => {
-    const currentLang = root.lang || 'es';
-    const nextLang = currentLang === 'es' ? 'en' : 'es';
-    localStorage.setItem('preferred-lang', nextLang);
-  });
+  function updateCurrentSection() {
+    const pageHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+    const atPageEnd = window.scrollY + window.innerHeight >= pageHeight - 2;
+    const current = atPageEnd
+      ? sections.at(-1)
+      : [...sections].reverse().find((section) => section.getBoundingClientRect().top <= window.innerHeight * 0.65);
+    if (current) setCurrentLink(current.id);
+    else links.forEach((link) => link.removeAttribute('aria-current'));
+  }
+
+  links.forEach((link) => link.addEventListener('click', () => {
+    const id = link.getAttribute('href')?.slice(1);
+    if (id) setCurrentLink(id);
+  }));
+  updateCurrentSection();
+  window.addEventListener('scroll', updateCurrentSection, { passive: true });
 </script>

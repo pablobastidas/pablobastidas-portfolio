@@ -1,72 +1,29 @@
-# Portafolio Profesional: Pablo Bastidas Garrido
+# Portafolio de Pablo Bastidas
 
-Sitio de portafolio personal orientado a perfil de **Arquitecto de Software y Desarrollador Backend Senior**. Especializado en software empresarial, automatización ERP, integraciones IoT y arquitecturas web modernas.
+Portafolio bilingüe creado con Astro. El contenido editable del sitio está centralizado en archivos Markdown y separado por idioma; los componentes Astro se ocupan de presentar esa información.
 
-## 🚀 Stack Tecnológico
+## Editar el contenido
 
-- **Framework:** Astro (Site estático de alto rendimiento)
-- **Lenguaje:** TypeScript
-- **Estilos:** Vanilla CSS (Modern CSS con Glassmorphism)
-- **Arquitectura:** Data-Driven (Desacoplamiento de contenido y presentación)
-- **SEO:** JSON-LD Structured Data (Person & Occupation)
+Modifica el frontmatter YAML del idioma correspondiente:
 
-## 🛠️ Estructura del Proyecto
+- `src/content/site.es.md`: versión en español.
+- `src/content/site.en.md`: versión en inglés.
 
-```text
-/
-├─ public/          # Assets estáticos (favicon, imágenes)
-├─ src/
-│  ├─ components/   # Componentes Astro reutilizables
-│  ├─ data/         # Archivos de datos TS (Única fuente de verdad)
-│  ├─ layouts/      # Plantillas base y SEO
-│  ├─ pages/        # Rutas y páginas principales
-│  └─ styles/       # CSS Global y variables de diseño
-├─ astro.config.mjs
-├─ package.json
-└─ tsconfig.json
+Cada archivo reúne identidad y enlaces, metadatos SEO, textos de navegación y secciones, fortalezas, proyectos y experiencia profesional. Mantén la misma estructura en los dos idiomas. El esquema de `src/content.config.ts` valida campos y enlaces al ejecutar Astro.
+
+Los proyectos tienen una entrada por idioma. `featured: true` los incluye en la página. `cardDescription` es el texto breve de la tarjeta; `summary`, `problem`, `solution` y `challenges` permiten conservar la ficha técnica completa para futuras páginas de detalle.
+
+## Desarrollo
+
+```sh
+npm install
+npm run dev
 ```
 
-## 📝 Cómo Editar el Contenido 
+Para validar la generación de ambas páginas:
 
-El sitio utiliza una arquitectura basada en datos. Para actualizar la información, **no es necesario editar componentes HTML**, solo debes modificar los archivos en `src/data/`:
+```sh
+npm run build
+```
 
-### 1. Datos Generales (`site.ts`)
-Configura tu identidad, redes sociales y metadatos globales.
-
-### 2. Trayectoria Profesional (`experience.ts`)
-Añade o modifica tus hitos laborales. Los cambios aquí se reflejan automáticamente en la **Línea de Tiempo** y en el **SEO de Google (JSON-LD)**.
-
-### 3. Proyectos Destacados (`projects.ts`)
-Gestiona tus trabajos. Los proyectos marcados como `featured: true` aparecerán automáticamente en el **Carrusel Interactivo** de la Home.
-
-## ✨ Características Destacadas
-
-- **Carrusel Interactivo:** Navegación horizontal con `scroll-snap` y controles táctiles/botón.
-- **Timeline Vertical:** Narrativa de crecimiento profesional con micro-interacciones.
-- **Scroll Reveal:** Animaciones sutiles de entrada para mejorar la UX.
-- **Spotlight Effect:** Iluminación interactiva que sigue al cursor en las tarjetas.
-- **Mobile First:** Diseño adaptativo para todas las pantallas.
-
-## 📦 Desarrollo y Despliegue
-
-### Entornos
-- **Desarrollo:** `npm run dev` (detección de cambios en tiempo real y validación de tipos).
-- **Producción:** `npm run build` (generación de sitio estático optimizado).
-
-### Despliegue en Vercel (CI/CD)
-El proyecto está pre-configurado para Vercel mediante `vercel.json`:
-1. Sube el código a **GitHub**.
-2. Importa el repositorio en **Vercel**.
-3. El despliegue será automático en cada `git push` a la rama principal.
-
-## 📝 Historial de Actualizaciones (Changelog)
-
-- **Actualización Reciente (Junio 2026)**:
-  - Se definieron los proyectos destacados en `src/data/projects.ts`.
-  - Se incluyeron **Mundial 48 (Polla Mundial)** y **Kawin Ecosystem**.
-  - Se vincularon exitosamente las tarjetas del portafolio con sus respectivos despliegues en producción (Vercel).
-  - Se consolidó la información técnica de Mundial 48 extraída desde su propia documentación (`README_TECNICO.md`).
-
----
-*Este proyecto representa un estándar de ingeniería Senior: limpio, modular y orientado a resultados.*
-
+El repositorio está conectado a Vercel. Los cambios que se suben a `main` activan el despliegue automático.

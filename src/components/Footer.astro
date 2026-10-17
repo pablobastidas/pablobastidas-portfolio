@@ -1,53 +1,38 @@
 ---
-import { siteData } from "@data/site";
-
-type Props = {
-  lang?: "es" | "en";
-};
-
-const { lang = "es" } = Astro.props;
+import type { SiteContent } from "@data/content";
+type Props = { content: SiteContent };
+const { content } = Astro.props;
+const backToTopLabel = content.ui.footer.backToTop;
 ---
-
-<footer class="footer">
-  <div class="container footer-content">
-    <div class="footer-left">
-      <span class="text-mono text-accent">© 2026</span>
-      <span class="text-mono text-muted">{siteData.name} — Built with Astro & Zen</span>
-    </div>
-    
-    <div class="footer-right">
-      <a href="#inicio" class="nav-link text-mono">{lang === "es" ? "Volver arriba" : "Back to top"}</a>
-    </div>
+<footer>
+  <div class="container footer-inner">
+    <span>{content.identity.name} · {content.identity.location}</span>
+    <span>© {new Date().getFullYear()}</span>
   </div>
+  <a class="back-to-top" href="#inicio" aria-label={backToTopLabel} title={backToTopLabel}>
+    <span aria-hidden="true">↑</span>
+  </a>
 </footer>
+<script>
+  const backToTop = document.querySelector<HTMLAnchorElement>(".back-to-top");
 
+  if (backToTop) {
+    const updateVisibility = () => {
+      backToTop.toggleAttribute("data-visible", window.scrollY > 240);
+    };
+
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+    updateVisibility();
+  }
+</script>
 <style>
-  .footer {
-    padding: 4rem 0;
-    border-top: 1px solid var(--line);
-  }
-
-  .footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .footer-left {
-    display: flex;
-    gap: 1.5rem;
-  }
-
-  @media (max-width: 640px) {
-    .footer-content {
-      flex-direction: column;
-      gap: 2rem;
-      text-align: center;
-    }
-    .footer-left {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-  }
+  footer { padding:1.5rem 0; border-top:1px solid var(--line); color:var(--text-smoke); }
+  .footer-inner { display:flex; justify-content:space-between; gap:1rem; font-size:.85rem; }
+  .back-to-top { position:fixed; right:max(1.5rem,env(safe-area-inset-right)); bottom:max(1.5rem,env(safe-area-inset-bottom)); z-index:60; display:grid; place-items:center; width:3rem; height:3rem; border:1px solid var(--accent); border-radius:.4rem; background:var(--accent); color:white; box-shadow:0 5px 18px rgb(23 35 59 / 17%); text-decoration:none; opacity:0; visibility:hidden; pointer-events:none; transform:translateY(.5rem); transition:opacity .2s ease,transform .2s ease,background-color .2s ease,visibility .2s ease; }
+  .back-to-top[data-visible] { opacity:1; visibility:visible; pointer-events:auto; transform:translateY(0); }
+  .back-to-top span { font-family:var(--font-display); font-size:1.5rem; line-height:1; }
+  .back-to-top:hover { background:#2447b7; transform:translateY(-2px); }
+  .back-to-top:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+  @media(max-width:500px) { .footer-inner { flex-wrap:wrap; } .back-to-top { right:max(1rem,env(safe-area-inset-right)); bottom:max(1rem,env(safe-area-inset-bottom)); } }
+  @media(prefers-reduced-motion:reduce) { .back-to-top { transition:none; } }
 </style>
-

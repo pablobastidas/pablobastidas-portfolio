@@ -1,141 +1,17 @@
 ---
-import { techIcons } from "@data/icons";
-
-type Props = {
-  lang?: "es" | "en";
-};
-
-const { lang = "es" } = Astro.props;
-
-const stack = [
-  {
-    category: "Modern Stack",
-    items: [
-      { name: "Angular 19", icon: "angular", color: "color-rose" },
-      { name: "FastAPI", icon: "fastapi", color: "color-emerald" },
-      { name: "Python", icon: "python", color: "color-blue" },
-      { name: "TypeScript", icon: "typescript", color: "color-blue" },
-      { name: "PostgreSQL", icon: "postgresql", color: "color-blue" }
-    ]
-  },
-  {
-    category: "Enterprise & ERP",
-    items: [
-      { name: "C# / .NET", icon: "csharp", color: "color-violet" },
-      { name: "VB.NET", icon: "dotnet", color: "color-violet" },
-      { name: "SQL Server", icon: "sqlserver", color: "color-rose" },
-      { name: "Oracle 11g", icon: "oracle", color: "color-rose" },
-      { name: "Softland ERP", icon: "dotnet", color: "color-amber" }
-    ]
-  },
-  {
-    category: "Data & Ops",
-    items: [
-      { name: "IoT / Modbus", icon: "scraping", color: "color-emerald" },
-      { name: "BI Automation", icon: "python", color: "color-amber" },
-      { name: "Scraping / ETL", icon: "scraping", color: "color-emerald" },
-      { name: "Docker", icon: "docker", color: "color-blue" },
-      { name: "GitLab CI/CD", icon: "astro", color: "color-rose" }
-    ]
-  }
-];
+import type { SiteContent } from "@data/content";
+type Props = { content: SiteContent };
+const { content } = Astro.props;
 ---
-
-<section class="section reveal" id="fortalezas">
-  <div class="container">
-    <div class="header-area mb-4">
-      <span class="text-mono text-accent">/Stack</span>
-      <h2 class="section-title">{lang === "es" ? "Ecosistema Técnico" : "Technical Ecosystem"}</h2>
-    </div>
-
-    <div class="stack-container">
-      {stack.map((group) => (
-        <div class="stack-group">
-          <h3 class="stack-subtitle text-mono">{lang === "es" && group.category === "Modern Stack" ? "Stack moderno" : lang === "es" && group.category === "Enterprise & ERP" ? "Empresa y ERP" : lang === "es" && group.category === "Data & Ops" ? "Datos y operaciones" : group.category}</h3>
-          <div class="stack-grid">
-            {group.items.map((item) => (
-              <div class={`stack-item glass-card ${item.color}`}>
-                <div class="icon-wrapper" set:html={techIcons[item.icon] || techIcons['scraping']} />
-                <span class="name">{item.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
+<div id="fortalezas" class="expertise">
+  <p class="small-label">{content.ui.strengths.heading}</p>
+  <dl>{content.ui.strengths.areas.map(area => <div><dt>{area.title}</dt><dd>{area.description}</dd></div>)}</dl>
+</div>
 <style>
-  .stack-container {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-  }
-
-  .stack-subtitle {
-    font-size: 0.8rem;
-    color: var(--text-smoke);
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  .stack-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 1rem;
-  }
-
-  .stack-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.8rem 1.2rem;
-    border: 1px solid var(--line);
-    transition: all 0.3s ease;
-  }
-
-  .stack-item:hover {
-    border-color: var(--accent);
-    background: rgba(255, 255, 255, 0.05);
-    transform: translateY(-2px);
-  }
-
-  .icon-wrapper {
-    width: 24px;
-    height: 24px;
-    color: var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .icon-wrapper :global(svg) {
-    width: 100%;
-    height: 100%;
-    filter: drop-shadow(0 0 8px var(--accent-muted));
-  }
-
-  .stack-item .name {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--text-smoke);
-    transition: color 0.2s;
-  }
-
-  .stack-item:hover .name {
-    color: var(--text);
-  }
-
-  @media (max-width: 640px) {
-    .stack-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .stack-item {
-      padding: 0.6rem 0.8rem;
-    }
-  }
+  .expertise > p { margin:0 0 1.5rem; }
+  dl { margin:0; }
+  dl > div { display:grid; grid-template-columns:8rem 1fr; gap:1rem; padding:1.2rem 0; border-top:1px solid var(--line); }
+  dt { font-size:1rem; font-weight:600; }
+  dd { margin:0; color:var(--text-smoke); font-size:.95rem; line-height:1.6; }
+  @media(max-width:400px) { dl > div { grid-template-columns:1fr; gap:.35rem; } }
 </style>
-
